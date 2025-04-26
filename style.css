@@ -22,7 +22,8 @@ nav {
   padding: 1rem 3rem;
   background: #111; /* Darker solid background */
   border-bottom: 1px solid #222;
-  position: relative; /* Needed for absolute positioning of mobile menu */
+  z-index: 1000;
+  position: relative;
 }
 .logo {
   font-size: 1.85rem;
@@ -83,11 +84,14 @@ header {
   padding: 5rem 3rem;
   background: #111; /* Match nav background */
   /* Remove background image style for now */
+  z-index: 1;
 }
 .header-content {
   flex: 1;
   padding-right: 2rem;
   text-align: left;
+  width: 35%;
+  max-width: 35%;
 }
 header h1 {
   font-size: 3rem; /* Larger heading */
@@ -119,12 +123,68 @@ header p {
     background-color: #00c864;
     transform: translateY(-2px);
 }
-.header-image {
+
+.header-images {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: -10px; /* Ensure no extra margin on the left */
+  padding-left: -10px; /* Remove any padding on the left */
+}
+
+.header-images img {
+  transition: transform 1s ease; /* Smooth transition for transform and opacity */
+  opacity: 1 ease; /* Initial opacity */
+}
+
+.header-image-1 {
   flex: 1;
   /* Placeholder for image styling */
   /* Example: Add styles for an img tag inside this div */
   /* img { width: 100%; max-width: 400px; border-radius: 10px; filter: blur(2px); } */
-  text-align: right; /* Align potential image to the right */
+  text-align: center; /* Align potential image to the right */
+  scale: 3;
+  transition: transform 1s ease;
+  transform: rotate(-15deg) translateX(50px);
+}
+
+.header-images:hover .header-image-1 img {
+  transform: rotate(15deg) translateX(-50px) translateY(10px); /* Rotate the image counterclockwise by 12 degrees */
+  opacity: 0.9;
+}
+
+.header-image-2 {
+  flex: 1;
+  /* Placeholder for image styling */
+  /* Example: Add styles for an img tag inside this div */
+  /* img { width: 100%; max-width: 400px; border-radius: 10px; filter: blur(2px); } */
+  text-align: center; /* Align potential image to the right */
+  scale: 3;
+  transition: transform 1s ease;
+  transform: translateY(-15px);
+  z-index: 3;
+}
+
+.header-image-3 {
+  flex: 1;
+  /* Placeholder for image styling */
+  /* Example: Add styles for an img tag inside this div */
+  /* img { width: 100%; max-width: 400px; border-radius: 10px; filter: blur(2px); } */
+  text-align: center; /* Align potential image to the right */
+  scale: 3;
+  transition: transform 1s ease;
+  transform: rotate(15deg) translateX(-50px);
+}
+
+.header-images:hover .header-image-3 img {
+  transform: rotate(-15deg) translateX(50px) translateY(-10px); /* Rotate the image counterclockwise by 12 degrees */
+  opacity: 0.9;
+}
+
+.gradient-divider {
+  height: 100px; /* Adjust height as needed */
+  background: linear-gradient(to bottom, #111, #000); /* Gradient from div1 to div2 */
 }
 
 /* Features Section (Replaces Description) */
