@@ -189,6 +189,54 @@ header p {
     transform: translateY(-8px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
+
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-vertical-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-card {
+  background-color: #1a1a1a; /* Match developer card */
+  padding: 1.5rem 2rem; /* Slightly less vertical padding */
+  border-radius: 12px; /* Match developer card */
+  text-align: center;
+  border: 1px solid #2a2a2a; /* Match developer card */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Match developer card */
+  width: 350px; /* Slightly wider than developer card */
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Match developer card */
+}
+
+.email-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.email-card a {
+  text-decoration: none;
+  color: #c0c0c0; /* Lighter text for dark background */
+  font-weight: normal; /* Adjust weight as needed */
+  display: flex; /* Align icon and text */
+  align-items: center;
+}
+
+.email-card i {
+  margin-right: 10px; /* More space for icon */
+  color: #00e676; /* Match theme accent */
+  font-size: 1.5rem; /* Adjust icon size */
+}
+
 .dev-pic {
   width: 120px; /* Slightly smaller pic */
   height: 120px;
