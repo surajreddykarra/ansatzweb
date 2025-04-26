@@ -22,6 +22,7 @@ nav {
   padding: 1rem 3rem;
   background: #111; /* Darker solid background */
   border-bottom: 1px solid #222;
+  position: relative; /* Needed for absolute positioning of mobile menu */
 }
 .logo {
   font-size: 1.85rem;
@@ -63,6 +64,15 @@ nav {
 }
 .nav-items li a:hover::after {
   width: 100%;
+}
+
+.menu-toggle {
+    display: none; /* Hide by default on desktop */
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 /* Header */
@@ -311,18 +321,66 @@ footer a:hover {
 
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
+    /* Use flexbox to align logo and toggle */
+    flex-direction: row; /* Keep items in a row */
+    justify-content: space-between; /* Space between logo and toggle */
+    align-items: center; /* Vertically align items */
     padding: 1rem;
+    flex-wrap: wrap; /* Allow wrapping if needed, though unlikely here */
+    position: relative; /* Keep relative positioning for the absolute menu */
   }
+
+  .logo {
+      order: 0; /* Ensure logo comes first */
+  }
+
+  .menu-toggle {
+      display: block; /* Show hamburger on mobile */
+      order: 1; /* Place it after the logo */
+  }
+
   .nav-items {
-    margin-top: 1rem;
+    /* Keep existing styles for dropdown appearance */
+    margin-top: 0; /* Remove top margin */
     flex-direction: column;
     align-items: center;
+    display: none; /* Hide by default */
+    width: 100%;
+    background-color: #1a1a1a; /* Background for dropdown */
+    position: absolute;
+    top: 100%; /* Position below the navbar */
+    left: 0;
+    padding: 1rem 0;
+    border-top: 1px solid #2a2a2a;
+    z-index: 1000;
+    order: 2; /* Ensure it appears below logo/toggle in source order if wrapped */
   }
+
+  .nav-items.active {
+      display: flex; /* Show when active */
+  }
+
   .nav-items li {
     margin-left: 0;
     margin-bottom: 0.8rem;
+    text-align: center;
+    width: 100%;
   }
+
+  .nav-items li a {
+      padding: 0.8rem 1rem;
+      display: block; /* Make links take full width */
+      border-bottom: 1px solid #2a2a2a; /* Separator */
+  }
+
+  .nav-items li:last-child a {
+      border-bottom: none;
+  }
+
+  .nav-items li a::after {
+      display: none; /* Hide underline effect on mobile */
+  }
+
   header {
       padding: 3rem 1rem;
   }
