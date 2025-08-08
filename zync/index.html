@@ -101,14 +101,44 @@
         // Extract shareId from URL path with better debugging
         // https://share.ansatzstudios.com/zync/45A7F6FB-D69D-4820-8A96-678730D4D0FF
         // https://ansatzstudios.com/zync/index.html/45A7F6FB-D69D-4820-8A96-678730D4D0FF
-        const fullPath = window.location.pathname;
-        const pathParts = fullPath.split('/').filter(part => part !== ''); // Remove empty parts
-        console.log('Full pathname:', fullPath);
-        console.log('Path parts:', pathParts);
-        debugger;
         
-        // For /zync/shareId, shareId should be at index 1 after filtering empty parts
-        const shareId = pathParts[1]; // pathParts[0] = 'zync', pathParts[1] = shareId
+        // Try multiple methods to get the shareId
+        let shareId = null;
+        
+        // Method 1: Check URL parameters first (in case redirect preserves it)
+        const urlParams = new URLSearchParams(window.location.search);
+        shareId = urlParams.get('shareId') || urlParams.get('id');
+        
+        console.log('URL search params:', window.location.search);
+        console.log('ShareId from params:', shareId);
+        
+        // Method 2: Extract from pathname
+        if (!shareId) {
+            const fullPath = window.location.pathname;
+            const pathParts = fullPath.split('/').filter(part => part !== ''); // Remove empty parts
+            console.log('Full pathname:', fullPath);
+            console.log('Path parts:', pathParts);
+            
+            // Look for shareId in different positions
+            // For /zync/shareId format
+            if (pathParts.length >= 2 && pathParts[0] === 'zync') {
+                shareId = pathParts[1];
+            }
+            // For /zync/index.html/shareId format (after redirect)
+            else if (pathParts.length >= 3 && pathParts[0] === 'zync' && pathParts[1] === 'index.html') {
+                shareId = pathParts[2];
+            }
+        }
+        
+        // Method 3: Check if shareId is in the hash
+        if (!shareId && window.location.hash) {
+            const hash = window.location.hash.substring(1); // Remove #
+            if (hash && hash !== 'file:index.html') {
+                shareId = hash;
+            }
+        }
+        
+        console.log('Final shareId:', shareId);
         
         const messageEl = document.getElementById('message');
         const buttonsEl = document.getElementById('buttons');

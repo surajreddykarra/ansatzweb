@@ -1,5 +1,8 @@
 # Handle the .well-known path for Universal Links
 /.well-known/apple-app-site-association /.well-known/apple-app-site-association 200
 
-# Handle dynamic share URLs - preserve the shareId parameter
-/zync/:shareId /zync/index.html/:shareId 200
+# Handle dynamic share URLs - rewrite to preserve shareId as query parameter
+/zync/:shareId /zync/index.html?shareId=:shareId 200!
+
+# Fallback for any other zync paths
+/zync/* /zync/index.html 200
