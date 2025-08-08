@@ -105,6 +105,7 @@
         const pathParts = fullPath.split('/').filter(part => part !== ''); // Remove empty parts
         console.log('Full pathname:', fullPath);
         console.log('Path parts:', pathParts);
+        debugger;
         
         // For /zync/shareId, shareId should be at index 1 after filtering empty parts
         const shareId = pathParts[1]; // pathParts[0] = 'zync', pathParts[1] = shareId
