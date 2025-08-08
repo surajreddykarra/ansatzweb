@@ -1,0 +1,8 @@
+# Handle the .well-known path for Universal Links
+/.well-known/apple-app-site-association /.well-known/apple-app-site-association 200
+
+# Redirect share subdomain to zync path
+https://share.ansatzstudios.com/* https://ansatzstudios.com/zync/:splat 301
+
+# Handle dynamic share URLs
+/zync/:shareId /zync/index.html 200

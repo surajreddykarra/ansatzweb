@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open in Zync</title>
+    <meta name="description" content="Someone shared something with you on Zync">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Open in Zync">
+    <meta property="og:description" content="Someone shared something with you on Zync">
+    <meta property="og:type" content="website">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+        
+        p {
+            opacity: 0.9;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+        
+        .button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin: 20px 10px;
+            transition: transform 0.2s ease;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .countdown {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Z</div>
+        <h1>Opening Zync...</h1>
+        <p id="message">Someone shared something with you!</p>
+        
+        <div id="buttons" style="display: none;">
+            <a href="https://apps.apple.com/app/your-app-id" id="appStoreLink" class="button">Download Zync</a>
+            <a href="#" id="tryAgainLink" class="button">Try Again</a>
+        </div>
+        
+        <p class="countdown" id="countdown"></p>
+    </div>
+
+    <script>
+        // Extract shareId from URL path
+        const pathParts = window.location.pathname.split('/');
+        const shareId = pathParts[2]; // /zync/{shareId}
+        
+        const messageEl = document.getElementById('message');
+        const buttonsEl = document.getElementById('buttons');
+        const countdownEl = document.getElementById('countdown');
+        const appStoreLink = document.getElementById('appStoreLink');
+        const tryAgainLink = document.getElementById('tryAgainLink');
+        
+        if (shareId && shareId !== 'index.html') {
+            // Create fallback custom scheme URL
+            const customSchemeURL = `walleX://share/${shareId}`;
+            tryAgainLink.href = customSchemeURL;
+            
+            // Try to open the app immediately
+            let attemptCount = 0;
+            
+            function attemptAppOpen() {
+                attemptCount++;
+                messageEl.textContent = `Attempting to open Zync... (${attemptCount}/3)`;
+                
+                // Try to open the custom scheme
+                window.location.href = customSchemeURL;
+            }
+            
+            // Start countdown and show fallback after delay
+            let countdown = 3;
+            const countdownInterval = setInterval(() => {
+                countdownEl.textContent = `If Zync doesn't open in ${countdown} seconds, use the buttons below.`;
+                countdown--;
+                
+                if (countdown < 0) {
+                    clearInterval(countdownInterval);
+                    messageEl.textContent = "Zync didn't open automatically.";
+                    buttonsEl.style.display = 'block';
+                    countdownEl.textContent = "You can download Zync or try opening the link again.";
+                }
+            }, 1000);
+            
+            // Try to open immediately
+            attemptAppOpen();
+            
+            // Try again after 1 second
+            setTimeout(() => {
+                if (attemptCount < 3) {
+                    attemptAppOpen();
+                }
+            }, 1000);
+            
+        } else {
+            messageEl.textContent = "Invalid share link.";
+            countdownEl.textContent = "Please request a new sharing link.";
+            buttonsEl.style.display = 'block';
+            tryAgainLink.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

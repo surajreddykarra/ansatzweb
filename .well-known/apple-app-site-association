@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "UYQ799DB86.com.ansatzstudios.zync"
+        ],
+        "components": [
+          {
+            "/": "/zync/*",
+            "comment": "Matches any URL with path that starts with /zync/"
+          }
+        ]
+      }
+    ]
+  }
+}
