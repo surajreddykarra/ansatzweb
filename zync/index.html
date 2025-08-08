@@ -98,9 +98,16 @@
     </div>
 
     <script>
-        // Extract shareId from URL path
-        const pathParts = window.location.pathname.split('/');
-        const shareId = pathParts[2]; // /zync/{shareId}
+        // Extract shareId from URL path with better debugging
+        // https://share.ansatzstudios.com/zync/45A7F6FB-D69D-4820-8A96-678730D4D0FF
+        // https://ansatzstudios.com/zync/index.html/45A7F6FB-D69D-4820-8A96-678730D4D0FF
+        const fullPath = window.location.pathname;
+        const pathParts = fullPath.split('/').filter(part => part !== ''); // Remove empty parts
+        console.log('Full pathname:', fullPath);
+        console.log('Path parts:', pathParts);
+        
+        // For /zync/shareId, shareId should be at index 1 after filtering empty parts
+        const shareId = pathParts[1]; // pathParts[0] = 'zync', pathParts[1] = shareId
         
         const messageEl = document.getElementById('message');
         const buttonsEl = document.getElementById('buttons');
@@ -108,10 +115,17 @@
         const appStoreLink = document.getElementById('appStoreLink');
         const tryAgainLink = document.getElementById('tryAgainLink');
         
-        if (shareId && shareId !== 'index.html') {
+        console.log('Extracted shareId:', shareId);
+        console.log('ShareId type:', typeof shareId);
+        console.log('ShareId length:', shareId ? shareId.length : 'undefined');
+        
+        if (shareId && shareId !== 'index.html' && shareId.trim() !== '' && shareId !== 'undefined') {
             // Create fallback custom scheme URL
             const customSchemeURL = `walleX://share/${shareId}`;
             tryAgainLink.href = customSchemeURL;
+            
+            console.log('Valid shareId detected:', shareId);
+            console.log('Custom scheme URL:', customSchemeURL);
             
             // Try to open the app immediately
             let attemptCount = 0;
@@ -122,6 +136,7 @@
                 
                 // Try to open the custom scheme
                 window.location.href = customSchemeURL;
+                console.log(`Attempt ${attemptCount}: Opening ${customSchemeURL}`);
             }
             
             // Start countdown and show fallback after delay
@@ -149,8 +164,10 @@
             }, 1000);
             
         } else {
+            console.log('Invalid shareId detected. Showing error message.');
+            console.log('ShareId value:', shareId);
             messageEl.textContent = "Invalid share link.";
-            countdownEl.textContent = "Please request a new sharing link.";
+            countdownEl.textContent = `Please request a new sharing link. (Debug: path=${fullPath}, shareId=${shareId})`;
             buttonsEl.style.display = 'block';
             tryAgainLink.style.display = 'none';
         }
