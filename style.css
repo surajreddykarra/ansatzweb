@@ -443,9 +443,37 @@ footer a:hover {
 
   header {
       padding: 3rem 1rem;
+      /* Make header-wrapper column to stack text and images */
   }
-  header h1 {
-      font-size: 2.5rem;
+  .header-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+  }
+  .header-content {
+    text-align: center;
+    padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+    margin: 0 auto;
+    max-width: 400px;
+    width: 100%;
+    order: 1; /* Ensure text comes first */
+  }
+  .header-images {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+    width: 100%;
+    order: 2; /* Animation/images come after text */
+  }
+  .header-images > div {
+    margin: 0;
+  }
+  .header-images img {
+    max-width: 110px;
+    margin-top: 0;
+    border-radius: 10px;
   }
   .features, .developers {
       padding: 3rem 1rem;
@@ -457,6 +485,24 @@ footer a:hover {
   .feature-card, .developer-card {
       max-width: 90%;
       width: 100%;
+  }
+
+  .header-content h1 {
+    font-size: 2rem;
+    line-height: 2.3rem;
+    text-align: center;
+    word-break: break-word;
+    margin-bottom: 1.2rem;
+  }
+  .header-content p {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    word-break: break-word;
   }
 }
 
@@ -478,4 +524,138 @@ footer a:hover {
         display: inline-block; /* Prevent overlap */
         margin-bottom: 0.5rem;
     }
+
+    .header-content {
+      max-width: 95vw;
+      padding: 1rem 0.2rem 0.2rem 0.2rem;
+    }
+    .header-content h1 {
+      font-size: 1.4rem;
+      line-height: 1.7rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .header-content p {
+      font-size: 0.98rem;
+      text-align: center;
+      max-width: 95vw;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  .nav-items {
+    display: none;
+    flex-direction: column;
+    background: #181818;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 180px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+  .nav-items.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .logo {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+  }
+  header .header-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .header-content {
+    text-align: center;
+    padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .header-content h1 {
+    font-size: 2rem;
+    line-height: 2.3rem;
+  }
+  .header-content p {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .header-images {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .header-images > div {
+    margin: 0;
+  }
+  .header-images img {
+    max-width: 110px;
+    margin-top: 0;
+    border-radius: 10px;
+  }
+  .features-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .feature-card {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .developers {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .developer-card {
+    width: 90%;
+    margin: 0 auto 1rem auto;
+    text-align: center;
+  }
+  footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .header-content h1 {
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+  }
+  .header-images img {
+    max-width: 90px;
+  }
+  .feature-card, .developer-card {
+    width: 98%;
+    font-size: 0.95rem;
+  }
+}
+
+/* Hamburger menu JS helper styles */
+.menu-toggle {
+  display: none;
 }

@@ -34,3 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navItems = document.getElementById('nav-items');
+  menuToggle.addEventListener('click', function() {
+    navItems.classList.toggle('active');
+    menuToggle.setAttribute(
+      'aria-expanded',
+      navItems.classList.contains('active') ? 'true' : 'false'
+    );
+  });
+});
