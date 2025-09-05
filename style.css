@@ -7,11 +7,14 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   font-family: 'Inter', sans-serif;
   background-color: #0a0a0a; /* Slightly off-black */
   color: #e0e0e0; /* Lighter grey for text */
   line-height: 1.7;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Navbar */
@@ -122,6 +125,42 @@ header p {
 .app-btn:hover {
     background-color: #00c864;
     transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    text-align: center;
+    margin: 0 auto;
+    padding-right: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .header-content p {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  header h1,
+  header p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .developers {
+    display: flex;
+    flex-direction: column;
+  }
+  .developers .developer-card:first-of-type {
+    order: 1;
+  }
+  .developers .developer-card:last-of-type {
+    order: 2;
+  }
+  .developers .features-container {
+    order: 3;
+  }
 }
 
 .header-images {
