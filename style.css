@@ -44,6 +44,7 @@ nav {
 .nav-items {
   display: flex;
   list-style: none;
+  margin-left: auto;
 }
 .nav-items li {
   margin-left: 2rem;
@@ -95,7 +96,7 @@ header {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 4.5rem 2rem 3rem 2rem;
+  padding: 4.5rem 2rem 1.5rem 2rem;
   background: transparent;
   position: relative;
   overflow: hidden;
@@ -129,17 +130,19 @@ header p {
   gap: 6px;
   background: linear-gradient(135deg, rgba(15,185,129,0.9), rgba(15,185,129,0.25));
   color: #ffffff;
-  padding: 12px 26px;
-  border-radius: 14px;
+  padding: 16px 40px;
+  border-radius: 16px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   letter-spacing: 0.5px;
   position: relative;
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 4px 18px -2px rgba(15,185,129,0.45);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.4s ease;
+  min-width: 180px;
+  justify-content: center;
 }
 .app-btn i { margin-right: 2px; }
 .app-btn:hover {
@@ -166,7 +169,7 @@ header p {
 }
 
 @media (max-width: 768px) {
-  header { flex-direction: column; padding: 3.5rem 1.25rem 2.5rem; }
+  header { flex-direction: column; padding: 3.5rem 1.25rem 1rem; }
   .header-content { 
     padding-right: 0; 
     max-width: 100%; 
@@ -204,7 +207,7 @@ header p {
 /* .gradient-divider removed to avoid breaking main gradient */
 
 /* Zync App Section */
-.zync-app { padding: 2rem 2rem 3rem; position: relative; text-align: center; }
+.zync-app { padding: 1.5rem 2rem 1.5rem; position: relative; text-align: center; }
 .zync-app h2 { 
   font-size: 1.8rem; 
   font-weight: 700; 
@@ -268,7 +271,7 @@ header p {
 }
 
 /* Team Section */
-.team { padding: 3.5rem 2rem 2.5rem; text-align: center; }
+.team { padding: 2rem 2rem 1.5rem; text-align: center; }
 .team h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 2.2rem; letter-spacing: -0.5px; }
 .team-row { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; max-width: 800px; margin: 0 auto; }
 .team-row .developer-card { flex: 1; min-width: 280px; max-width: 360px; }
@@ -327,7 +330,7 @@ header p {
 }
 
 /* Contact & Legal Section */
-.contact-legal { padding: 3.5rem 2rem 4rem; text-align: center; }
+.contact-legal { padding: 2rem 2rem 2.5rem; text-align: center; }
 .contact-legal h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 2rem; letter-spacing: -0.5px; }
 .contact-grid { display: flex; flex-direction: column; gap: 2.5rem; align-items: center; max-width: 800px; margin: 0 auto; }
 
@@ -419,8 +422,8 @@ header p {
 @media (max-width:640px){
   .team-row { gap: 1rem; flex-direction: column; align-items: center; }
   .team-row .developer-card { max-width: 320px; }
-  .zync-app { padding: 3.5rem 1.25rem 2.5rem; }
-  .team, .contact-legal { padding: 3.5rem 1.25rem 2.5rem; }
+  .zync-app { padding: 1.5rem 1.25rem 1.5rem; }
+  .team, .contact-legal { padding: 2rem 1.25rem 1.5rem; }
 }
 
 /* Features Section (Replaces Description) */
