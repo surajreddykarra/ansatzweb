@@ -21,10 +21,31 @@
   <meta name="twitter:creator" content="@ansatzstudios"> <!-- Optional: Add creator's Twitter handle -->
 
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+  <!-- SVG Dot Matrix Background with Wave Ripple Animation -->
+  <div class="dot-matrix-bg" aria-hidden="true">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dot-pattern" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+          <circle cx="4" cy="4" r="1.5" class="dot" />
+        </pattern>
+        <mask id="fade-mask">
+          <radialGradient id="fade-gradient" cx="50%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.8"/>
+            <stop offset="70%" stop-color="white" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0.1"/>
+          </radialGradient>
+          <rect width="100%" height="100%" fill="url(#fade-gradient)"/>
+        </mask>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#dot-pattern)" mask="url(#fade-mask)"/>
+    </svg>
+  </div>
   <!-- Navbar -->
   <nav>
     <div class="logo">
@@ -44,48 +65,48 @@
   <header>
     <div class="grid-overlay" aria-hidden="true"></div>
     <div class="header-content">
-      <h1>where design meets engineering</h1>
-      <p>we craft apps as beautiful as prototypes, and as robust as platforms</p>
-      <a href="https://apps.apple.com/in/app/zync-secure-digital-wallet/id6747610778" class="app-btn" target="_blank"><i class="fab fa-apple"></i> Download on iOS</a>
+      <h1 class="animate-on-scroll fade-up">where design meets engineering</h1>
+      <p class="animate-on-scroll fade-up delay-1">we craft apps as beautiful as prototypes, and as robust as platforms</p>
+      <a href="https://apps.apple.com/in/app/zync-secure-digital-wallet/id6747610778" class="app-btn animate-on-scroll bounce-in delay-2" target="_blank"><i class="fab fa-apple"></i> Download on iOS</a>
     </div>
   </header>
 
   <!-- Zync App Section -->
   <section class="zync-app" id="zync-app">
-    <h2>About Zync <img src="./zync-logo.svg" alt="Zync" class="inline-logo" /></h2>
-    <p class="tagline">Say goodbye to scattered wallets and apps. </p>
+    <h2 class="animate-on-scroll fade-up">About Zync <img src="./zync-logo.svg" alt="Zync" class="inline-logo" /></h2>
+    <p class="tagline animate-on-scroll fade-up delay-1">Say goodbye to scattered wallets and apps. </p>
     <div class="zync-app-content">
-      <div class="zync-app-shot">
+      <div class="zync-app-shot animate-on-scroll slide-left">
         <img src="./zync-intro.png" alt="Zync App Screenshot" />
       </div>
       <div class="zync-app-text">
-        <div class="feature-item">
+        <div class="feature-item animate-on-scroll fade-up delay-1">
           <h4>securely store and organize your cards, IDs</h4>
           <p>no-tracking. always on device.</p>
         </div>
-        <div class="feature-item">
+        <div class="feature-item animate-on-scroll fade-up delay-2">
           <h4>keep your subscriptions under control</h4>
           <p>Never miss a due date. Understand where your money goes with detailed analytics.</p>
         </div>
-        <div class="feature-item">
+        <div class="feature-item animate-on-scroll fade-up delay-3">
           <h4>Map your memories</h4>
           <p>never forget where you've been. connect your photos to the places they were captured.</p>
         </div>
-        <a href="https://apps.apple.com/in/app/zync-secure-digital-wallet/id6747610778" class="app-btn inline" target="_blank"><i class="fab fa-apple"></i> Download on iOS</a>
+        <a href="https://apps.apple.com/in/app/zync-secure-digital-wallet/id6747610778" class="app-btn inline animate-on-scroll bounce-in delay-4" target="_blank"><i class="fab fa-apple"></i> Download on iOS</a>
       </div>
     </div>
   </section>
 
   <!-- Team Section -->
   <section class="team" id="team">
-    <h2>the team</h2>
+    <h2 class="animate-on-scroll fade-up">the team</h2>
     <div class="team-row">
-      <div class="developer-card">
+      <div class="developer-card animate-on-scroll pop-in delay-1">
         <img src="https://unavatar.io/twitter/surajrek" alt="Suraj Karra" class="dev-pic" />
         <a href="https://twitter.com/surajrek" target="_blank"><i class="fa-brands fa-x-twitter"></i> Suraj Karra (@surajrek)</a>
         <p>talks with copilot</p>
       </div>
-      <div class="developer-card">
+      <div class="developer-card animate-on-scroll pop-in delay-2">
         <img src="https://unavatar.io/twitter/nishijup" alt="Nishith Jupally" class="dev-pic" />
         <a href="https://twitter.com/nishijup" target="_blank"><i class="fa-brands fa-x-twitter"></i> Nishith Jupally (@nishijup)</a>
         <p>talks with cursor</p>
@@ -95,10 +116,10 @@
 
   <!-- Contact & Legal Section -->
   <section class="contact-legal" id="contact">
-    <h2>contact and legal</h2>
+    <h2 class="animate-on-scroll fade-up">contact and legal</h2>
     <div class="contact-grid">
       <div class="contact-main">
-        <div class="contact-box email">
+        <div class="contact-box email animate-on-scroll fade-up delay-1">
           <i class="fas fa-envelope"></i>
           <div>
             <span class="contact-label">Get in touch</span>
@@ -108,31 +129,29 @@
       </div>
       <div class="legal-social-grid">
         <div class="legal-links">
-          <h3>Legal</h3>
-          <a href="zync/legal/privacy-policy.html"><i class="fas fa-file-contract"></i> Privacy Policy</a>
-          <a href="zync/legal/terms-of-service.html"><i class="fas fa-file-alt"></i> Terms of Service</a>
+          <h3 class="animate-on-scroll fade-up delay-1">Legal</h3>
+          <a href="zync/legal/privacy-policy.html" class="animate-on-scroll fade-up delay-2"><i class="fas fa-file-contract"></i> Privacy Policy</a>
+          <a href="zync/legal/terms-of-service.html" class="animate-on-scroll fade-up delay-3"><i class="fas fa-file-alt"></i> Terms of Service</a>
         </div>
         <div class="social-links">
-          <h3>Follow us</h3>
-          <a href="https://twitter.com/ansatzstudios" target="_blank"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
-          <a href="https://apps.apple.com/in/app/zync-secure-digital-wallet/id6747610778" target="_blank"><i class="fab fa-apple"></i> App Store</a>
+          <h3 class="animate-on-scroll fade-up delay-1">Follow us</h3>
+          <a href="https://twitter.com/ansatzstudios" target="_blank" class="animate-on-scroll fade-up delay-2"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+          <a href="https://apps.apple.com/in/app/zync-secure-digital-wallet/id6747610778" target="_blank" class="animate-on-scroll fade-up delay-3"><i class="fab fa-apple"></i> App Store</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="animate-on-scroll fade-up">
     <span>&copy; 2025 Ansatz Studios</span>
   </footer>
 
+  <!-- Back to Top Button -->
+  <button id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
   <script src="script.js"></script>
-  <script>
-    function detectScreenSize() {
-      console.log('Width:', window.innerWidth, 'Height:', window.innerHeight);
-    }
-    detectScreenSize();
-    window.addEventListener('resize', detectScreenSize);
-  </script>
 </body>
 </html>

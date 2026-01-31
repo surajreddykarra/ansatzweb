@@ -4,202 +4,334 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Zync</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
+        :root {
+            --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --color-bg-dark: #000000;
+            --color-bg-gradient-end: #0a1a14;
+            --color-accent: #0fb981;
+            --color-accent-light: #68f3ca;
+            --color-accent-glow: rgba(15, 185, 129, 0.3);
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e0e0e0;
+            --color-text-muted: #a8c5b8;
+            --color-glass-bg: rgba(255, 255, 255, 0.05);
+            --color-glass-border: rgba(255, 255, 255, 0.08);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
+            font-family: var(--font-body);
+            line-height: 1.7;
+            background: linear-gradient(to bottom, var(--color-bg-dark) 0%, var(--color-bg-gradient-end) 100%);
+            color: var(--color-text-secondary);
+            min-height: 100vh;
+            font-optical-sizing: auto;
+        }
+
+        .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            color: #333;
+            padding: 2rem 1.5rem 4rem;
         }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            padding: 0.6rem 1rem;
+            background: var(--color-glass-bg);
+            border: 1px solid var(--color-glass-border);
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(15, 185, 129, 0.15);
+            transform: translateX(-4px);
+        }
+
         h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+            font-family: var(--font-heading);
+            color: var(--color-text-primary);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-accent);
+            letter-spacing: -0.5px;
         }
+
         h2 {
-            color: #34495e;
-            margin-top: 30px;
+            font-family: var(--font-heading);
+            color: var(--color-text-primary);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
         }
+
         h3 {
-            color: #7f8c8d;
+            font-family: var(--font-heading);
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
         }
-        .contact-info {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
+
+        h4 {
+            font-family: var(--font-heading);
+            color: var(--color-accent-light);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
         }
-        .highlight {
-            background-color: #e8f5e8;
-            padding: 10px;
-            border-left: 4px solid #27ae60;
-            margin: 15px 0;
+
+        p {
+            margin-bottom: 1rem;
         }
+
         ul {
-            padding-left: 20px;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
         }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            background: var(--color-glass-bg);
+            padding: 1.25rem 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--color-glass-border);
+            margin: 1.5rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info strong {
+            color: var(--color-accent-light);
+        }
+
+        .highlight {
+            background: rgba(15, 185, 129, 0.1);
+            padding: 1.25rem 1.5rem;
+            border-left: 4px solid var(--color-accent);
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            margin: 1.5rem 0;
+        }
+
+        .highlight h4 {
+            margin-top: 0;
+            color: var(--color-accent);
+        }
+
+        .highlight p:last-child,
+        .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
         .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-glass-border);
             text-align: center;
-            color: #7f8c8d;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem 1rem 3rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy for Zync</h1>
-    
-    <div class="contact-info">
-        <strong>Effective Date:</strong> August 1, 2025<br>
-        <strong>Developer:</strong> Ansatz Studios<br>
-        <strong>Bundle Identifier:</strong> com.ansatzstudios.zync<br>
-        <strong>Contact:</strong> support@ansatzstudios.com
-    </div>
+    <div class="container">
+        <a href="/" class="back-link">
+            <i class="fas fa-arrow-left"></i> Ansatz Studios
+        </a>
 
-    <h2>Introduction</h2>
-    <p>Zync ("we", "our", or "the app") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our digital wallet and subscription management application.</p>
-    
-    <div class="highlight">
-        <h4>Data Collection by Developer:</h4>
-        <p><strong>Important:</strong> All personal data you enter into Zync is stored directly on your device. As the developer, Ansatz Studios does not collect, access, or have any visibility into your personal information. Your data always stays on your device, and when CloudKit sync is enabled, Apple handles the secure synchronization to your personal iCloud account without our involvement or access.</p>
-    </div>
+        <h1>Privacy Policy for Zync</h1>
+        
+        <div class="contact-info">
+            <strong>Effective Date:</strong> August 1, 2025<br>
+            <strong>Developer:</strong> Ansatz Studios<br>
+            <strong>Bundle Identifier:</strong> com.ansatzstudios.zync<br>
+            <strong>Contact:</strong> support@ansatzstudios.com
+        </div>
 
-    <h2>Data Collection and Usage</h2>
+        <h2>Introduction</h2>
+        <p>Zync ("we", "our", or "the app") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our digital wallet and subscription management application.</p>
+        
+        <div class="highlight">
+            <h4>Data Collection by Developer:</h4>
+            <p><strong>Important:</strong> All personal data you enter into Zync is stored directly on your device. As the developer, Ansatz Studios does not collect, access, or have any visibility into your personal information. Your data always stays on your device, and when CloudKit sync is enabled, Apple handles the secure synchronization to your personal iCloud account without our involvement or access.</p>
+        </div>
 
-    <h3>Information We Collect</h3>
-    
-    <h4>Local Data Storage:</h4>
-    <ul>
-        <li>Credit card information (encrypted locally)</li>
-        <li>Identity documents (passports, IDs)</li>
-        <li>Subscription details and payment history</li>
-        <li>Address and location information</li>
-        <li>Biometric authentication data (Face ID/Touch ID - stored in iOS Secure Enclave)</li>
-        <li>Photos from your photo library (when you choose to associate them with addresses)</li>
-    </ul>
+        <h2>Data Collection and Usage</h2>
 
-    <h4>CloudKit Sync (Optional):</h4>
-    <ul>
-        <li>When enabled, your data syncs to your personal iCloud account using Apple's CloudKit</li>
-        <li>Data remains encrypted and private to your Apple ID</li>
-        <li>We cannot access your iCloud data</li>
-        <li>You can disable CloudKit sync at any time</li>
-    </ul>
-
-    <div class="highlight">
-        <h4>No Third-Party Data Collection:</h4>
+        <h3>Information We Collect</h3>
+        
+        <h4>Local Data Storage:</h4>
         <ul>
-            <li>We do not collect, transmit, or share any personal data with third parties</li>
-            <li>We do not use analytics, tracking, or advertising services</li>
-            <li>We do not have access to your data stored locally on your device or in your iCloud</li>
+            <li>Credit card information (encrypted locally)</li>
+            <li>Identity documents (passports, IDs)</li>
+            <li>Subscription details and payment history</li>
+            <li>Address and location information</li>
+            <li>Biometric authentication data (Face ID/Touch ID - stored in iOS Secure Enclave)</li>
+            <li>Photos from your photo library (when you choose to associate them with addresses)</li>
         </ul>
-    </div>
 
-    <h3>How We Use Your Information</h3>
-    <p>Your data is used exclusively for:</p>
-    <ul>
-        <li>Storing and organizing your digital cards, subscriptions, and addresses</li>
-        <li>Providing subscription reminders and notifications</li>
-        <li>Syncing your data across your devices (when CloudKit is enabled)</li>
-        <li>Authenticating access to the app (biometric authentication)</li>
-    </ul>
+        <h4>CloudKit Sync (Optional):</h4>
+        <ul>
+            <li>When enabled, your data syncs to your personal iCloud account using Apple's CloudKit</li>
+            <li>Data remains encrypted and private to your Apple ID</li>
+            <li>We cannot access your iCloud data</li>
+            <li>You can disable CloudKit sync at any time</li>
+        </ul>
 
-    <h2>Data Storage and Security</h2>
+        <div class="highlight">
+            <h4>No Third-Party Data Collection:</h4>
+            <ul>
+                <li>We do not collect, transmit, or share any personal data with third parties</li>
+                <li>We do not use analytics, tracking, or advertising services</li>
+                <li>We do not have access to your data stored locally on your device or in your iCloud</li>
+            </ul>
+        </div>
 
-    <h3>Local Storage</h3>
-    <ul>
-        <li>All data is stored locally on your device using iOS secure storage mechanisms</li>
-        <li>Card information including CVV codes are encrypted using iOS encryption standards</li>
-        <li>Biometric data (Face ID/Touch ID) is stored in the device's Secure Enclave and never leaves your device</li>
-    </ul>
+        <h3>How We Use Your Information</h3>
+        <p>Your data is used exclusively for:</p>
+        <ul>
+            <li>Storing and organizing your digital cards, subscriptions, and addresses</li>
+            <li>Providing subscription reminders and notifications</li>
+            <li>Syncing your data across your devices (when CloudKit is enabled)</li>
+            <li>Authenticating access to the app (biometric authentication)</li>
+        </ul>
 
-    <h3>CloudKit Security</h3>
-    <ul>
-        <li>When CloudKit sync is enabled, data is encrypted in transit and at rest</li>
-        <li>Apple's CloudKit provides enterprise-grade security for your data</li>
-        <li>Only you can access your CloudKit data through your Apple ID</li>
-        <li>We do not have keys or access to decrypt your CloudKit data</li>
-    </ul>
+        <h2>Data Storage and Security</h2>
 
-    <h3>Device Security</h3>
-    <ul>
-        <li>App can be protected with Face ID, Touch ID, or device passcode</li>
-        <li>Automatic app lock when backgrounded (if enabled)</li>
-        <li>Data is tied to your device's security measures</li>
-    </ul>
+        <h3>Local Storage</h3>
+        <ul>
+            <li>All data is stored locally on your device using iOS secure storage mechanisms</li>
+            <li>Card information including CVV codes are encrypted using iOS encryption standards</li>
+            <li>Biometric data (Face ID/Touch ID) is stored in the device's Secure Enclave and never leaves your device</li>
+        </ul>
 
-    <h2>Data Rights and Control</h2>
+        <h3>CloudKit Security</h3>
+        <ul>
+            <li>When CloudKit sync is enabled, data is encrypted in transit and at rest</li>
+            <li>Apple's CloudKit provides enterprise-grade security for your data</li>
+            <li>Only you can access your CloudKit data through your Apple ID</li>
+            <li>We do not have keys or access to decrypt your CloudKit data</li>
+        </ul>
 
-    <h3>Your Data, Your Control</h3>
-    <ul>
-        <li><strong>Local Data:</strong> All data remains on your device by default</li>
-        <li><strong>CloudKit Toggle:</strong> Enable/disable cloud sync at any time</li>
-        <li><strong>Data Export:</strong> Export your data through the app's sharing features</li>
-        <li><strong>Data Deletion:</strong> Delete individual items or all data through the app</li>
-        <li><strong>App Deletion:</strong> Removing the app deletes all local data</li>
-    </ul>
+        <h3>Device Security</h3>
+        <ul>
+            <li>App can be protected with Face ID, Touch ID, or device passcode</li>
+            <li>Automatic app lock when backgrounded (if enabled)</li>
+            <li>Data is tied to your device's security measures</li>
+        </ul>
 
-    <h3>Data Persistence</h3>
-    <ul>
-        <li>Local data persists until you delete it or uninstall the app</li>
-        <li>CloudKit data persists in your iCloud account until you delete it</li>
-        <li>We cannot delete or access your CloudKit data</li>
-    </ul>
+        <h2>Data Rights and Control</h2>
 
-    <h2>Permissions and Access</h2>
+        <h3>Your Data, Your Control</h3>
+        <ul>
+            <li><strong>Local Data:</strong> All data remains on your device by default</li>
+            <li><strong>CloudKit Toggle:</strong> Enable/disable cloud sync at any time</li>
+            <li><strong>Data Export:</strong> Export your data through the app's sharing features</li>
+            <li><strong>Data Deletion:</strong> Delete individual items or all data through the app</li>
+            <li><strong>App Deletion:</strong> Removing the app deletes all local data</li>
+        </ul>
 
-    <h3>Required Permissions</h3>
-    <ul>
-        <li><strong>Location Services:</strong> To capture current location for address entries and show nearby photos</li>
-        <li><strong>Photo Library:</strong> To associate photos with saved addresses and import images</li>
-        <li><strong>Notifications:</strong> To remind you of upcoming subscription payments</li>
-        <li><strong>Face ID/Touch ID:</strong> For secure app authentication</li>
-    </ul>
+        <h3>Data Persistence</h3>
+        <ul>
+            <li>Local data persists until you delete it or uninstall the app</li>
+            <li>CloudKit data persists in your iCloud account until you delete it</li>
+            <li>We cannot delete or access your CloudKit data</li>
+        </ul>
 
-    <h3>Optional Features</h3>
-    <ul>
-        <li><strong>CloudKit:</strong> Sync data across your Apple devices</li>
-        <li><strong>Contacts:</strong> For sharing cards and addresses with contacts</li>
-    </ul>
+        <h2>Permissions and Access</h2>
 
-    <h2>Third-Party Services</h2>
+        <h3>Required Permissions</h3>
+        <ul>
+            <li><strong>Location Services:</strong> To capture current location for address entries and show nearby photos</li>
+            <li><strong>Photo Library:</strong> To associate photos with saved addresses and import images</li>
+            <li><strong>Notifications:</strong> To remind you of upcoming subscription payments</li>
+            <li><strong>Face ID/Touch ID:</strong> For secure app authentication</li>
+        </ul>
 
-    <h3>Apple Services Only</h3>
-    <ul>
-        <li>CloudKit for optional data synchronization</li>
-        <li>Core Location for GPS functionality</li>
-        <li>UserNotifications for reminders</li>
-        <li>LocalAuthentication for biometric security</li>
-    </ul>
+        <h3>Optional Features</h3>
+        <ul>
+            <li><strong>CloudKit:</strong> Sync data across your Apple devices</li>
+            <li><strong>Contacts:</strong> For sharing cards and addresses with contacts</li>
+        </ul>
 
-    <h3>No External Analytics or Tracking</h3>
-    <ul>
-        <li>No Google Analytics, Facebook SDK, or similar tracking services</li>
-        <li>No crash reporting to external services</li>
-        <li>No advertising networks or data brokers</li>
-        <li>No user behavior tracking or profiling</li>
-    </ul>
+        <h2>Third-Party Services</h2>
 
-    <h2>Children's Privacy</h2>
-    <p>Zync is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.</p>
+        <h3>Apple Services Only</h3>
+        <ul>
+            <li>CloudKit for optional data synchronization</li>
+            <li>Core Location for GPS functionality</li>
+            <li>UserNotifications for reminders</li>
+            <li>LocalAuthentication for biometric security</li>
+        </ul>
 
-    <h2>Changes to Privacy Policy</h2>
-    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in the app and updating the "Effective Date" at the top of this Privacy Policy.</p>
+        <h3>No External Analytics or Tracking</h3>
+        <ul>
+            <li>No Google Analytics, Facebook SDK, or similar tracking services</li>
+            <li>No crash reporting to external services</li>
+            <li>No advertising networks or data brokers</li>
+            <li>No user behavior tracking or profiling</li>
+        </ul>
 
-    <h2>Contact Information</h2>
-    <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-    <div class="contact-info">
-        <strong>Email:</strong> support@ansatzstudios.com<br>
-        <strong>Developer:</strong> Ansatz Studios<br>
-        <strong>App:</strong> Zync (com.ansatzstudios.zync)
-    </div>
+        <h2>Children's Privacy</h2>
+        <p>Zync is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.</p>
 
-    <div class="footer">
-        <p>© 2025 Ansatz Studios. All rights reserved.</p>
-        <p>Last updated: August 1, 2025</p>
+        <h2>Changes to Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in the app and updating the "Effective Date" at the top of this Privacy Policy.</p>
+
+        <h2>Contact Information</h2>
+        <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+        <div class="contact-info">
+            <strong>Email:</strong> support@ansatzstudios.com<br>
+            <strong>Developer:</strong> Ansatz Studios<br>
+            <strong>App:</strong> Zync (com.ansatzstudios.zync)
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Ansatz Studios. All rights reserved.</p>
+            <p>Last updated: August 1, 2025</p>
+        </div>
     </div>
 </body>
 </html>
