@@ -1,213 +1,182 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // =============================================
-    // MOBILE MENU TOGGLE
-    // =============================================
-    const menuToggle = document.getElementById('menu-toggle');
-    const navItems = document.getElementById('nav-items');
+document.addEventListener("DOMContentLoaded", () => {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (menuToggle && navItems) {
-        menuToggle.addEventListener('click', () => {
-            navItems.classList.toggle('active');
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
+  const siteNav = document.getElementById("site-nav");
+  const menuToggle = document.getElementById("menu-toggle");
+  const navItems = document.getElementById("nav-items");
 
-            const icon = menuToggle.querySelector('i');
-            if (navItems.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Close menu when a link is clicked
-        document.querySelectorAll('#nav-items li a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navItems.classList.contains('active')) {
-                    navItems.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    const icon = menuToggle.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-        });
-    }
-
-    // =============================================
-    // SCROLL-TRIGGERED ANIMATIONS (Intersection Observer)
-    // =============================================
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -80px 0px',
-        threshold: 0.15
+  if (menuToggle && navItems) {
+    const closeMenu = () => {
+      navItems.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
     };
 
-    const animationObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add visible class to trigger animation
-                entry.target.classList.add('visible');
-                // Optionally unobserve after animation (for performance)
-                animationObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    animatedElements.forEach(el => {
-        animationObserver.observe(el);
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navItems.classList.toggle("is-open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
     });
 
-    // =============================================
-    // NAVBAR SCROLL EFFECT
-    // =============================================
-    const nav = document.querySelector('nav');
-    let lastScrollY = window.scrollY;
+    navItems.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
 
-    const handleNavScroll = () => {
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 820) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!navItems.contains(event.target) && !menuToggle.contains(event.target)) {
+        closeMenu();
+      }
+    });
+  }
+
+  const updateNavState = () => {
+    if (!siteNav) {
+      return;
+    }
+    siteNav.classList.toggle("is-scrolled", window.scrollY > 18);
+  };
+
+  updateNavState();
+  window.addEventListener("scroll", updateNavState, { passive: true });
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      const targetId = anchor.getAttribute("href");
+      if (!targetId || targetId === "#") {
+        return;
+      }
+
+      const target = document.querySelector(targetId);
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+      target.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  });
+
+  const revealElements = document.querySelectorAll(".reveal");
+  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    revealElements.forEach((element) => revealObserver.observe(element));
+  } else {
+    revealElements.forEach((element) => element.classList.add("is-visible"));
+  }
+
+  const slides = Array.from(document.querySelectorAll("[data-slide]"));
+  const prevButton = document.getElementById("carousel-prev");
+  const nextButton = document.getElementById("carousel-next");
+  const dotsContainer = document.getElementById("carousel-dots");
+  const currentCount = document.getElementById("carousel-count-current");
+  const totalCount = document.getElementById("carousel-count-total");
+  const carouselControls = document.querySelector(".carousel-controls");
+
+  if (slides.length && prevButton && nextButton && dotsContainer) {
+    let activeIndex = 0;
+    const dots = slides.map((_, index) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "carousel-dot";
+      dot.setAttribute("aria-label", `Go to screenshot ${index + 1}`);
+      dot.addEventListener("click", () => setActiveSlide(index));
+      dotsContainer.appendChild(dot);
+      return dot;
+    });
+
+    const setActiveSlide = (index) => {
+      activeIndex = index;
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === activeIndex;
+        slide.classList.toggle("is-active", isActive);
+      });
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === activeIndex);
+      });
+
+      if (currentCount) {
+        currentCount.textContent = String(activeIndex + 1);
+      }
+      if (totalCount) {
+        totalCount.textContent = String(slides.length);
+      }
+      prevButton.disabled = slides.length === 1;
+      nextButton.disabled = slides.length === 1;
+      if (carouselControls) {
+        carouselControls.classList.toggle("is-single-slide", slides.length === 1);
+      }
+    };
+
+    prevButton.addEventListener("click", () => {
+      setActiveSlide((activeIndex - 1 + slides.length) % slides.length);
+    });
+
+    nextButton.addEventListener("click", () => {
+      setActiveSlide((activeIndex + 1) % slides.length);
+    });
+
+    setActiveSlide(0);
+  }
+
+  if (!prefersReducedMotion) {
+    const parallaxElements = document.querySelectorAll("[data-parallax]");
+    const cursorGlow = document.querySelector(".cursor-glow");
+    const supportsFinePointer = window.matchMedia("(pointer: fine)").matches;
+    let parallaxTicking = false;
+
+    const updateParallax = () => {
+      const scrollTop = window.scrollY;
+      parallaxElements.forEach((element) => {
+        const depth = Number(element.dataset.depth || "0");
+        element.style.setProperty("--parallax-y", `${scrollTop * depth * -0.18}px`);
+      });
+      parallaxTicking = false;
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!parallaxTicking) {
+          window.requestAnimationFrame(updateParallax);
+          parallaxTicking = true;
         }
-        lastScrollY = window.scrollY;
-    };
+      },
+      { passive: true }
+    );
+    updateParallax();
 
-    window.addEventListener('scroll', handleNavScroll, { passive: true });
+    if (cursorGlow && supportsFinePointer) {
+      const showGlow = () => {
+        cursorGlow.style.opacity = "1";
+      };
 
-    // =============================================
-    // BACK TO TOP BUTTON
-    // =============================================
-    const backToTopBtn = document.getElementById('back-to-top');
-    
-    if (backToTopBtn) {
-        const handleBackToTopVisibility = () => {
-            if (window.scrollY > 400) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        };
+      const hideGlow = () => {
+        cursorGlow.style.opacity = "0";
+      };
 
-        window.addEventListener('scroll', handleBackToTopVisibility, { passive: true });
-
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+      window.addEventListener("mousemove", (event) => {
+        cursorGlow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+      });
+      window.addEventListener("mouseenter", showGlow);
+      window.addEventListener("mouseleave", hideGlow);
     }
-
-    // =============================================
-    // PARALLAX DOT MATRIX BACKGROUND
-    // =============================================
-    const dotMatrixBg = document.querySelector('.dot-matrix-bg');
-    
-    if (dotMatrixBg) {
-        let ticking = false;
-
-        const updateParallax = () => {
-            const scrollY = window.scrollY;
-            // Subtle parallax - move at 0.3x scroll speed
-            const translateY = scrollY * 0.3;
-            dotMatrixBg.style.transform = `translateY(${translateY}px)`;
-            ticking = false;
-        };
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        }, { passive: true });
-    }
-
-    // =============================================
-    // DYNAMIC DOT WAVE ANIMATION (SVG Enhancement)
-    // =============================================
-    const initDotWaveAnimation = () => {
-        const svg = document.querySelector('.dot-matrix-bg svg');
-        if (!svg) return;
-
-        // Get viewport center for wave origin
-        const updateDotAnimations = () => {
-            const dots = svg.querySelectorAll('.dot');
-            if (dots.length === 0) return;
-
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-
-            dots.forEach(dot => {
-                const rect = dot.getBoundingClientRect();
-                const dotX = rect.left + rect.width / 2;
-                const dotY = rect.top + rect.height / 2;
-                
-                // Calculate distance from center
-                const distance = Math.sqrt(
-                    Math.pow(dotX - centerX, 2) + 
-                    Math.pow(dotY - centerY, 2)
-                );
-                
-                // Set animation delay based on distance (wave effect)
-                const maxDistance = Math.sqrt(
-                    Math.pow(window.innerWidth, 2) + 
-                    Math.pow(window.innerHeight, 2)
-                ) / 2;
-                
-                const delay = (distance / maxDistance) * 2; // 0-2 seconds
-                dot.style.animationDelay = `${delay}s`;
-            });
-        };
-
-        // Run once on load (pattern is static, so we just set initial delays)
-        // For SVG pattern elements, we use CSS animation instead
-    };
-
-    // Initialize wave animation
-    initDotWaveAnimation();
-
-    // =============================================
-    // SMOOTH SCROLL FOR ANCHOR LINKS
-    // =============================================
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                e.preventDefault();
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // =============================================
-    // FEATURE CARDS HOVER SOUND EFFECT (Optional)
-    // =============================================
-    // Subtle visual feedback already handled by CSS
-    // Can add haptic feedback for mobile if needed
-
-    // =============================================
-    // PERFORMANCE: Reduce animations when tab is hidden
-    // =============================================
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            // Pause expensive animations when tab is not visible
-            if (dotMatrixBg) {
-                dotMatrixBg.style.animationPlayState = 'paused';
-            }
-        } else {
-            if (dotMatrixBg) {
-                dotMatrixBg.style.animationPlayState = 'running';
-            }
-        }
-    });
+  }
 });
