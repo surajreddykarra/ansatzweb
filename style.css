@@ -519,8 +519,12 @@ main,
 .zync-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-  gap: 2rem;
+  gap: 3rem;
   align-items: center;
+}
+
+.zync-carousel-wrap {
+  padding-top: 0.75rem;
 }
 
 .zync-copy,
@@ -869,7 +873,11 @@ main,
   }
 
   .zync-layout {
-    gap: 3rem;
+    gap: 4rem;
+  }
+
+  .zync-carousel-wrap {
+    padding-top: 0.5rem;
   }
 
   .carousel-viewport {
@@ -983,6 +991,10 @@ main,
     justify-content: center;
   }
 
+  .zync-carousel-wrap {
+    padding-top: 0.75rem;
+  }
+
   .developer-card,
   .contact-box,
   .link-column {
@@ -1056,7 +1068,7 @@ main,
   }
 
   .zync-layout {
-    gap: 2.5rem;
+    gap: 3.5rem;
   }
 
   .hero-copy {
@@ -1081,6 +1093,10 @@ main,
 
   .carousel-viewport {
     min-height: 28rem;
+  }
+
+  .zync-carousel-wrap {
+    padding-top: 0.9rem;
   }
 
   .carousel-slide img {
