@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Ansatz Studios social preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020403"/>
+      <stop offset="58%" stop-color="#07110b"/>
+      <stop offset="100%" stop-color="#040806"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1">
+      <stop offset="0%" stop-color="#3dff97" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#3dff97" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="0" cy="0" r="1">
+      <stop offset="0%" stop-color="#12af67" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#12af67" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#76ffc0"/>
+      <stop offset="100%" stop-color="#1ec16b"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(111,255,183,0.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.55"/>
+
+  <circle cx="180" cy="120" r="230" fill="url(#glowLeft)"/>
+  <circle cx="1030" cy="420" r="280" fill="url(#glowRight)"/>
+  <circle cx="860" cy="140" r="120" fill="#44f29c" opacity="0.08"/>
+
+  <rect x="70" y="74" width="1060" height="482" rx="34" fill="rgba(7,12,9,0.40)" stroke="rgba(162,255,211,0.12)"/>
+
+  <g transform="translate(110 112)">
+    <rect x="0" y="0" width="270" height="48" rx="24" fill="rgba(68,242,156,0.10)" stroke="rgba(162,255,211,0.18)"/>
+    <text x="24" y="31" fill="#44f29c" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="3">ANSATZ STUDIOS</text>
+
+    <text x="0" y="154" fill="#f3fff8" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="700">where design meets</text>
+    <text x="0" y="236" fill="#f3fff8" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="700">engineering.</text>
+
+    <text x="0" y="314" fill="#d7ebdf" font-family="Arial, Helvetica, sans-serif" font-size="30">
+      we craft apps as beautiful as prototypes,
+    </text>
+    <text x="0" y="356" fill="#d7ebdf" font-family="Arial, Helvetica, sans-serif" font-size="30">
+      and as robust as platforms.
+    </text>
+
+  </g>
+</svg>
