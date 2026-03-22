@@ -128,13 +128,34 @@ main,
   z-index: 3;
   top: 0;
   left: 0;
-  width: 18rem;
-  height: 18rem;
+  width: 22rem;
+  height: 22rem;
   border-radius: 50%;
   opacity: 0;
-  background: radial-gradient(circle, rgba(63, 255, 159, 0.18), transparent 64%);
+  background:
+    radial-gradient(circle, rgba(92, 255, 175, 0.22) 0%, rgba(41, 220, 124, 0.14) 26%, rgba(7, 18, 11, 0) 68%);
+  mix-blend-mode: screen;
   transform: translate3d(-50%, -50%, 0);
-  transition: opacity 180ms ease;
+  transition: opacity 220ms ease, width 220ms ease, height 220ms ease, filter 220ms ease;
+  filter: blur(10px);
+  will-change: transform, opacity;
+}
+
+.cursor-glow.is-active {
+  opacity: 0.95;
+}
+
+.cursor-glow.is-hovering {
+  width: 28rem;
+  height: 28rem;
+  filter: blur(14px);
+}
+
+@media (pointer: fine) {
+  a,
+  button {
+    cursor: pointer;
+  }
 }
 
 .site-nav {

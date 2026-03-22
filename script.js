@@ -164,19 +164,54 @@ document.addEventListener("DOMContentLoaded", () => {
     updateParallax();
 
     if (cursorGlow && supportsFinePointer) {
+      let pointerX = window.innerWidth / 2;
+      let pointerY = window.innerHeight / 2;
+      let currentX = pointerX;
+      let currentY = pointerY;
+      let cursorFrame = null;
+
+      const interactiveSelectors =
+        "a, button, .feature-card, .developer-card, .contact-box, .link-column, .carousel-slide img, .brand";
+
+      const renderCursorGlow = () => {
+        currentX += (pointerX - currentX) * 0.16;
+        currentY += (pointerY - currentY) * 0.16;
+        cursorGlow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+        cursorFrame = window.requestAnimationFrame(renderCursorGlow);
+      };
+
       const showGlow = () => {
-        cursorGlow.style.opacity = "1";
+        cursorGlow.classList.add("is-active");
+        if (!cursorFrame) {
+          cursorFrame = window.requestAnimationFrame(renderCursorGlow);
+        }
       };
 
       const hideGlow = () => {
-        cursorGlow.style.opacity = "0";
+        cursorGlow.classList.remove("is-active", "is-hovering");
+        if (cursorFrame) {
+          window.cancelAnimationFrame(cursorFrame);
+          cursorFrame = null;
+        }
       };
 
       window.addEventListener("mousemove", (event) => {
-        cursorGlow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+
+        if (!cursorFrame) {
+          currentX = pointerX;
+          currentY = pointerY;
+          showGlow();
+        }
+
+        const interactiveTarget = event.target.closest(interactiveSelectors);
+        cursorGlow.classList.toggle("is-hovering", Boolean(interactiveTarget));
       });
+
       window.addEventListener("mouseenter", showGlow);
       window.addEventListener("mouseleave", hideGlow);
+      document.addEventListener("mouseleave", hideGlow);
     }
   }
 });

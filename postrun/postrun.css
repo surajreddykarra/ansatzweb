@@ -151,14 +151,8 @@ main,
 
 @media (pointer: fine) {
   a,
-  button,
-  .feature-card,
-  .info-card,
-  .preview-panel,
-  .policy-card,
-  .legal-cta-card,
-  .brand {
-    cursor: none;
+  button {
+    cursor: pointer;
   }
 }
 
